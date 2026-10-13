@@ -81,6 +81,17 @@ p{margin:0;max-width:62ch}
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .tile{background:var(--ink);color:var(--ink-fg);border-radius:var(--r-card);aspect-ratio:1.6;max-width:100%;display:grid;place-items:center;align-content:center;gap:8px;text-align:center;font-size:15px;font-weight:600;padding:12px;text-decoration:none}
 .tile svg{width:34px;height:34px}
+button.tile{border:0;font-family:inherit;cursor:pointer;width:100%}
+button.tile[aria-pressed="true"]{background:var(--leaf);box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--leaf)}
+.tiles-hint{color:var(--muted);font-size:15px;margin:-6px 0 0}
+.catinfo{background:var(--field);border-radius:var(--r-card);padding:24px;display:grid;gap:14px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:start}
+.catinfo[hidden]{display:none}
+.catinfo h3{font-size:28px;margin-bottom:6px}
+.catinfo p{margin:0;color:#4f4f4c}
+.catinfo .chips span{font-size:14px;font-weight:500;border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:var(--bg)}
+.catinfo > div:first-child,.catinfo .chips{grid-column:1}
+.catinfo .tip{grid-column:2;grid-row:1/3;align-self:stretch;background:var(--bg);border-radius:14px;padding:16px;font-size:15px}
+.catinfo .tip b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--leaf);margin-bottom:4px}
 .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .path{border-radius:var(--r-card);padding:24px;display:grid;gap:10px;align-content:start;text-decoration:none;color:var(--fg);background:var(--field)}
 .path.blue{background:var(--blue)} .path.green{background:var(--green)}
@@ -198,6 +209,8 @@ footer a{color:var(--muted)}
   .sofa{padding:22px}
   .team{grid-template-columns:1fr 1fr}
   .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .catinfo{grid-template-columns:minmax(0,1fr);padding:20px}
+  .catinfo > div:first-child,.catinfo .chips,.catinfo .tip{grid-column:auto;grid-row:auto}
   .tile{aspect-ratio:1.15}
   .fields{grid-template-columns:1fr}
   .logo b{font-size:34px}
@@ -229,6 +242,7 @@ footer a{color:var(--muted)}
   @keyframes float{0%,100%{transform:none}50%{transform:translateY(-5px)}}
   .arrow{display:inline-block;animation:swap 3.2s var(--ease) infinite}
   @keyframes swap{0%,60%,100%{transform:none}75%{transform:rotate(180deg)}}
+  .catinfo.pop{animation:page-in .4s var(--ease) both}
   .logo img{transition:transform .5s var(--ease)}
   .logo:hover img{transform:rotate(-8deg) scale(1.05)}
 }
@@ -292,11 +306,32 @@ footer a{color:var(--muted)}
   </div>
   <div class="stack">
     <h2>Hva kan du bytte?</h2>
-    <div class="tiles">
-      <div class="tile"><svg><use href="#i-shirt"/></svg>Klær &amp; tilbehør</div>
-      <div class="tile"><svg><use href="#i-shoe"/></svg>Sko</div>
-      <div class="tile"><svg><use href="#i-sofa"/></svg>Interiør &amp; møbler</div>
-      <div class="tile"><svg><use href="#i-palette"/></svg>Kunst &amp; design</div>
+    <p class="tiles-hint">Trykk på en kategori for å lese mer.</p>
+    <div class="tiles" id="cats">
+      <button type="button" class="tile" data-cat="klaer" aria-pressed="false" aria-controls="cat-klaer"><svg><use href="#i-shirt"/></svg>Klær &amp; tilbehør</button>
+      <button type="button" class="tile" data-cat="sko" aria-pressed="false" aria-controls="cat-sko"><svg><use href="#i-shoe"/></svg>Sko</button>
+      <button type="button" class="tile" data-cat="interior" aria-pressed="false" aria-controls="cat-interior"><svg><use href="#i-sofa"/></svg>Interiør &amp; møbler</button>
+      <button type="button" class="tile" data-cat="kunst" aria-pressed="false" aria-controls="cat-kunst"><svg><use href="#i-palette"/></svg>Kunst &amp; design</button>
+    </div>
+    <div class="catinfo" id="cat-klaer" hidden>
+      <div><h3>Klær &amp; tilbehør</h3><p>Jakker, gensere, kjoler, bukser, vesker og smykker. Gi garderoben en oppfriskning uten å kjøpe nytt, og la klærne du ikke bruker lenger, få et nytt liv hos noen andre.</p></div>
+      <div class="chips"><span>Jakker</span><span>Gensere</span><span>Kjoler</span><span>Vesker</span><span>Smykker</span><span>Solbriller</span></div>
+      <div class="tip"><b>Tips</b>Ta bilder i dagslys, og skriv størrelse, merke og stand. Da får du raskere svar.</div>
+    </div>
+    <div class="catinfo" id="cat-sko" hidden>
+      <div><h3>Sko</h3><p>Sneakers, boots, pensko og festsko. Sko som bare er brukt et par ganger, fortjener mer enn en plass bakerst i skapet.</p></div>
+      <div class="chips"><span>Sneakers</span><span>Boots</span><span>Pensko</span><span>Festsko</span><span>Sandaler</span></div>
+      <div class="tip"><b>Tips</b>Vis sålen på bildene, og oppgi størrelsen. Gjerne lengden i centimeter også.</div>
+    </div>
+    <div class="catinfo" id="cat-interior" hidden>
+      <div><h3>Interiør &amp; møbler</h3><p>Sofaer, stoler, bord, lamper, tekstiler og pynt. Når stilen eller boligen endrer seg, kan du bytte møblene i stedet for å kaste dem.</p></div>
+      <div class="chips"><span>Sofaer</span><span>Stoler</span><span>Bord</span><span>Lamper</span><span>Tepper</span><span>Pynt</span></div>
+      <div class="tip"><b>Tips</b>Skriv mål og hvor tingen kan hentes. Store møbler byttes enklest med folk i nærheten.</div>
+    </div>
+    <div class="catinfo" id="cat-kunst" hidden>
+      <div><h3>Kunst &amp; design</h3><p>Malerier, plakater, keramikk, designobjekter og håndlaget kunst. Fornye veggene og hyllene uten å bruke penger.</p></div>
+      <div class="chips"><span>Malerier</span><span>Plakater</span><span>Keramikk</span><span>Designklassikere</span><span>Håndlaget</span></div>
+      <div class="tip"><b>Tips</b>Oppgi kunstner eller designer hvis du vet det. Har tingene ulik verdi, kan dere jevne ut med Tradeocoins.</div>
     </div>
   </div>
   <div class="paths">
@@ -559,6 +594,17 @@ document.addEventListener("click", e => {
   try { history.replaceState(null, "", "#" + page); } catch {}
 });
 addEventListener("hashchange", route); route();
+
+// Kategorier på forsiden: trykk for å vise info
+document.querySelectorAll("#cats .tile").forEach(btn => btn.addEventListener("click", () => {
+  const open = btn.getAttribute("aria-pressed") !== "true";
+  document.querySelectorAll("#cats .tile").forEach(b => b.setAttribute("aria-pressed", String(open && b === btn)));
+  document.querySelectorAll(".catinfo").forEach(p => {
+    const show = open && p.id === "cat-" + btn.dataset.cat;
+    p.hidden = !show;
+    if (show) { p.classList.remove("pop"); void p.offsetWidth; p.classList.add("pop"); }
+  });
+}));
 
 // Elementer glir inn når de kommer til syne
 if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
