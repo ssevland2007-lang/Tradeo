@@ -207,7 +207,31 @@ footer a{color:var(--muted)}
   .bar a{min-width:0;flex:1;padding:7px 4px;font-size:11px}
 }
 @media (max-width:480px){.team{grid-template-columns:1fr}}
-@media (prefers-reduced-motion:no-preference){.btn,.path,.tile{transition:transform .15s}.btn:active,.tile:active{transform:scale(.97)}}
+/* Animasjoner */
+@media (prefers-reduced-motion:no-preference){
+  :root{--ease:cubic-bezier(.22,.8,.24,1)}
+  .js section[data-page].active{animation:page-in .45s var(--ease) both}
+  @keyframes page-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:calc(var(--i,0) * 70ms)}
+  .rv.in{opacity:1;transform:none}
+  .btn,.path,.tile,.member,.msgcard,.chips label,.bar a{transition:transform .25s var(--ease),box-shadow .25s var(--ease),background-color .2s,color .2s}
+  .rv.in.path,.rv.in.tile,.rv.in.member{transition:opacity .6s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
+  @media (hover:hover){
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.12)}
+    .path:hover,.member:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.08)}
+    .tile:hover{transform:translateY(-3px) scale(1.02)}
+    .bar a:not([aria-current]):hover{background:var(--field)}
+    .chips label:hover{transform:translateY(-1px)}
+    .path:hover span{letter-spacing:.01em}
+  }
+  .btn:active,.tile:active,.chips label:active{transform:scale(.97)}
+  .msgcard.in{animation:float 6s ease-in-out infinite;animation-delay:calc(.8s + var(--i,0) * 1.5s)}
+  @keyframes float{0%,100%{transform:none}50%{transform:translateY(-5px)}}
+  .arrow{display:inline-block;animation:swap 3.2s var(--ease) infinite}
+  @keyframes swap{0%,60%,100%{transform:none}75%{transform:rotate(180deg)}}
+  .logo img{transition:transform .5s var(--ease)}
+  .logo:hover img{transform:rotate(-8deg) scale(1.05)}
+}
 </style>
 </head>
 <body>
@@ -535,6 +559,18 @@ document.addEventListener("click", e => {
   try { history.replaceState(null, "", "#" + page); } catch {}
 });
 addEventListener("hashchange", route); route();
+
+// Elementer glir inn når de kommer til syne
+if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+  }), { rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll("section[data-page] h2, .lead, .msgcard, .tile, .path, .member, .sofa, .faq, .info, form, .terms > div").forEach(el => {
+    const sibs = [...el.parentElement.children].filter(c => c.matches(el.tagName.toLowerCase() + (el.className ? "." + el.classList[0] : "")));
+    el.style.setProperty("--i", Math.min(sibs.indexOf(el), 6));
+    el.classList.add("rv"); io.observe(el);
+  });
+}
 
 function makeRef(){ const d = new Date(); return "TR-" + String(d.getFullYear()).slice(2) + String(d.getMonth()+1).padStart(2,"0") + "-" + Math.random().toString(36).slice(2,6).toUpperCase(); }
 
