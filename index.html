@@ -67,6 +67,30 @@ p{margin:0;max-width:62ch}
 .hero{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center}
 .hero > div{display:grid;gap:22px;min-width:0}
 .thread{display:grid;gap:12px}
+.soon{display:inline-flex;align-items:center;gap:8px;justify-self:start;background:var(--green);color:var(--leaf);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:7px 14px;border-radius:999px}
+.soon i{width:8px;height:8px;border-radius:50%;background:var(--leaf);position:relative}
+.stores{display:flex;gap:10px;flex-wrap:wrap}
+.store{display:grid;gap:0;background:var(--ink);color:var(--ink-fg);border-radius:14px;padding:9px 18px 10px;line-height:1.15;min-width:150px;cursor:default;user-select:none}
+.store small{font-size:11px;opacity:.7;font-weight:500}
+.store b{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.phone{justify-self:center;width:min(310px,100%);aspect-ratio:9/18.5;background:#111;border-radius:46px;padding:11px;box-shadow:0 30px 60px rgba(0,0,0,.14),0 0 0 1px #2a2a2a inset;position:relative}
+.phone::before{content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);width:84px;height:24px;border-radius:999px;background:#111;z-index:2}
+.screen{background:var(--bg);border-radius:36px;height:100%;overflow:hidden;display:grid;grid-template-rows:auto auto 1fr auto;gap:12px;padding:52px 14px 14px}
+.screen .apphead{display:flex;justify-content:space-between;align-items:baseline}
+.screen .apphead b{font:500 26px/1 var(--font-display);font-variation-settings:"opsz" 24}
+.screen .apphead span{font-size:12px;color:var(--muted)}
+.screen .chips span{font-size:12px;font-weight:500;border:1px solid var(--line);border-radius:999px;padding:5px 11px;background:var(--field)}
+.screen .chips span:first-child{background:var(--ink);color:var(--ink-fg);border-color:var(--ink)}
+.screen .thread{align-content:start;gap:10px}
+.screen .msgcard{grid-template-columns:46px 1fr;gap:2px 10px;padding:10px;border-radius:16px}
+.screen .msgcard .pic{width:46px;height:46px;border-radius:10px}
+.screen .msgcard .pic svg{width:24px;height:24px}
+.screen .msgcard .name{font-size:16px}
+.screen .msgcard .when{font-size:10px}
+.screen .msgcard .item,.screen .msgcard .sub{font-size:12px}
+.screen .tabbar{display:flex;justify-content:space-around;background:var(--field);border-radius:999px;padding:9px}
+.screen .tabbar svg{width:18px;height:18px;opacity:.35}
+.screen .tabbar svg:first-child{opacity:1}
 .msgcard{display:grid;grid-template-columns:64px 1fr;gap:4px 14px;padding:14px;border-radius:var(--r-card)}
 .msgcard.blue{background:var(--blue)} .msgcard.green{background:var(--green)}
 .msgcard .pic{grid-row:1/4;width:64px;height:64px;border-radius:12px;background:var(--bg);display:grid;place-items:center}
@@ -243,6 +267,10 @@ footer a{color:var(--muted)}
   .arrow{display:inline-block;animation:swap 3.2s var(--ease) infinite}
   @keyframes swap{0%,60%,100%{transform:none}75%{transform:rotate(180deg)}}
   .catinfo.pop{animation:page-in .4s var(--ease) both}
+  .soon i::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--leaf);animation:pulse 1.8s ease-out infinite}
+  @keyframes pulse{from{transform:scale(1);opacity:.6}to{transform:scale(3);opacity:0}}
+  .phone{animation:float 7s ease-in-out infinite}
+  .phone .msgcard.in{animation:none}
   .logo img{transition:transform .5s var(--ease)}
   .logo:hover img{transform:rotate(-8deg) scale(1.05)}
 }
@@ -282,14 +310,23 @@ footer a{color:var(--muted)}
 <section data-page="hjem" id="hjem">
   <div class="hero">
     <div>
-      <h1>Bytt det du ikke bruker mot noe du vil ha.</h1>
-      <p class="lead">I <span data-brand>Tradeo</span> bytter du klær, sko, interiør og alt som er for fint til å kaste. Her finner du hjelp, kontaktinfo og alt om samarbeid.</p>
+      <span class="soon"><i></i>Appen kommer snart</span>
+      <h1>Snart kan du bytte det du ikke bruker mot noe du vil ha.</h1>
+      <p class="lead">I <span data-brand>Tradeo</span> bytter du klær, sko, interiør og alt som er for fint til å kaste. Appen lanseres snart. Frem til da finner du alt om oss her, og du kan kontakte oss når som helst.</p>
+      <div class="stores" aria-label="Kommer snart på App Store og Google Play">
+        <span class="store"><small>Kommer snart på</small><b>App Store</b></span>
+        <span class="store"><small>Kommer snart på</small><b>Google Play</b></span>
+      </div>
       <div class="row">
-        <a class="btn" href="#om">Last ned appen</a>
-        <a class="btn soft" href="#kundeservice">Få hjelp</a>
+        <a class="btn" href="#kundeservice">Kontakt oss</a>
+        <a class="btn soft" href="#om">Les om oss</a>
       </div>
     </div>
-    <div class="thread" aria-label="Slik ser et bytte ut i appen">
+    <div class="phone" aria-label="Forhåndsvisning av appen">
+     <div class="screen">
+      <div class="apphead"><b data-brand>Tradeo</b><span>Meldinger</span></div>
+      <div class="chips"><span>Alle</span><span>Bytteforslag</span><span>Ulest</span></div>
+    <div class="thread">
       <div class="msgcard blue">
         <div class="pic"><svg><use href="#i-shoe"/></svg></div>
         <div class="top"><span class="name">Ingrid</span><span class="when">for 2 t siden</span></div>
@@ -302,6 +339,15 @@ footer a{color:var(--muted)}
         <div class="item">Grovstrikket genser, hvit <span class="coin"><svg><use href="#i-coin"/></svg>400</span></div>
         <div class="sub">Er genseren fortsatt ledig?</div>
       </div>
+      <div class="msgcard blue">
+        <div class="pic"><svg><use href="#i-sofa"/></svg></div>
+        <div class="top"><span class="name">Emma</span><span class="when">for 3 d. siden</span></div>
+        <div class="item">Lenestol i bouclé <span class="coin"><svg><use href="#i-coin"/></svg>900</span></div>
+        <div class="sub">Bytte mot sofaen din?</div>
+      </div>
+    </div>
+      <div class="tabbar" aria-hidden="true"><svg><use href="#i-home"/></svg><svg><use href="#i-help"/></svg><svg><use href="#i-hand"/></svg><svg><use href="#i-info"/></svg></div>
+     </div>
     </div>
   </div>
   <div class="stack">
@@ -429,7 +475,7 @@ footer a{color:var(--muted)}
     </div>
   </div>
 
-  <div class="row"><span class="btn" aria-disabled="true">App Store-lenke kommer</span><span class="btn soft" aria-disabled="true">Google Play-lenke kommer</span></div>
+  <div class="stores" aria-label="Kommer snart på App Store og Google Play"><span class="store"><small>Kommer snart på</small><b>App Store</b></span><span class="store"><small>Kommer snart på</small><b>Google Play</b></span></div>
 </section>
 
 <section data-page="kundeservice" id="kundeservice">
