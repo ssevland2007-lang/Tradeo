@@ -1,0 +1,8 @@
+# Netlify-sikkerhetshoder for tradeoapp.com. Legges i samme mappe som index.html.
+# CSP: alt ligger i index.html (skrift og bilder som data:), og skjemaene sendes bare til Web3Forms.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'none'; img-src 'self' data:; font-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://api.web3forms.com; form-action https://api.web3forms.com; base-uri 'none'; frame-ancestors 'none'
