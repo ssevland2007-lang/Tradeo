@@ -227,6 +227,29 @@ legend{font:400 23px var(--font-display);padding:0;margin-bottom:12px}
 .bio dt{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
 .bio dd{margin:0}
 
+.member{position:relative}
+.member .mail{position:relative;z-index:1}
+.member .more{font-size:14px;font-weight:600;color:var(--leaf);text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.member .more::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.member .more span{transition:transform .2s}
+.member:hover{border-color:var(--fg)}
+.member:hover .more span{transform:translateX(3px)}
+/* Egen side for hver i teamet */
+.back{justify-self:start;font-size:14px;font-weight:600;color:var(--fg);text-decoration:none;padding:9px 16px;border-radius:999px;background:var(--field)}
+.profile-head{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:end}
+.photo{aspect-ratio:4/5;border-radius:var(--r-card);display:grid;place-items:center;font:400 clamp(64px,10vw,110px) var(--font-display);overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+.profile-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.profile-body > div{background:var(--field);border-radius:var(--r-card);padding:clamp(20px,3vw,32px);display:grid;gap:12px;align-content:start}
+.profile-body h2{font-size:clamp(22px,2.6vw,28px)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.gallery:empty{display:none}
+.gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--r-card)}
+.profile-nav{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:24px}
+.profile-nav a{color:var(--fg);text-decoration:none;font-weight:600;font-size:15px}
+.profile-nav a small{display:block;color:var(--muted);font-weight:500;font-size:12px}
+.profile-nav a:last-child{text-align:right}
+@media (max-width:700px){.profile-head{grid-template-columns:1fr}.photo{max-width:280px}.profile-body{grid-template-columns:1fr}}
 footer{padding-block:8px 40px;color:var(--muted);font-size:14px}
 .foot{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:28px;border-top:1px solid var(--line);padding-top:36px}
 .foot h4{margin:0 0 10px;font-size:13px;color:var(--fg);font-weight:600}
@@ -450,34 +473,22 @@ footer{padding-block:8px 40px;color:var(--muted);font-size:14px}
       <article class="member">
         <div class="avatar">SK</div>
         <div><h3>Sander Kittelsen</h3><div class="role">CEO · Chief Executive</div><a class="mail" href="mailto:sander@tradeoapp.com">sander@tradeoapp.com</a></div>
-        <details class="bio"><summary>More about Sander</summary><dl>
-          <div><dt>Background</dt><dd>From Kristiansand, where he went to Kristiansand Cathedral School. Studies entrepreneurship and business development. Deeply engaged in society, with a particular interest in leadership, business development and economics.</dd></div>
-          <div><dt>Experience</dt><dd>Elected to the board of Kristiansand Young Conservatives at 14 and later became second deputy chair. Has also served on the executive committee of Agder Young Conservatives, which gave solid organisational and political experience. Has worked at Playworld, in a warehouse and at Infografikk (Apple Premium Reseller).</dd></div>
-        </dl></details>
+        <a class="more" href="#sander">More about Sander <span aria-hidden="true">→</span></a>
       </article>
       <article class="member">
         <div class="avatar">ÅF</div>
         <div><h3>Åsne Figenschou</h3><div class="role">CTO · Technology</div><a class="mail" href="mailto:aasne@tradeoapp.com">aasne@tradeoapp.com</a></div>
-        <details class="bio"><summary>More about Åsne</summary><dl>
-          <div><dt>Background</dt><dd>From Bærum, where she took the sports programme at Nadderud upper secondary school. Studies entrepreneurship and business development. Creative, with a strong interest in fashion, reuse and redesign, and already had her own YouTube channel about redesigning old clothes in primary school. Very interested in artificial intelligence and uses AI actively in building Tradeo.</dd></div>
-          <div><dt>Experience</dt><dd>At 16, won an entrepreneurship competition run by DNB with the app idea “Ditt Neste Bytte” (Your Next Swap), the idea Tradeo builds on. Started a small business with a friend in lower secondary school, and was part of the costume team for the school revue, which got a top review in Aftenposten. Works in a café today and has previously worked at Build-A-Bear and Ringo in customer service and sales.</dd></div>
-        </dl></details>
+        <a class="more" href="#aasne">More about Åsne <span aria-hidden="true">→</span></a>
       </article>
       <article class="member">
         <div class="avatar">AA</div>
         <div><h3>Amie Andersson</h3><div class="role">CCO · Commercial Lead</div><a class="mail" href="mailto:amie@tradeoapp.com">amie@tradeoapp.com</a></div>
-        <details class="bio"><summary>More about Amie</summary><dl>
-          <div><dt>Background</dt><dd>Grew up in Sweden, with Swedish, Danish and Norwegian roots. Studies business development and entrepreneurship at BI in Oslo. Took economics and law in upper secondary school, has completed a college course in project management and studied for half a year in London. Social, positive and curious.</dd></div>
-          <div><dt>Experience</dt><dd>Received a diploma for her own student company in upper secondary school. Has worked in a kindergarten, a shop, customer service, a restaurant and a hotel, which gave her broad experience with teamwork, communication and meeting many different people.</dd></div>
-        </dl></details>
+        <a class="more" href="#amie">More about Amie <span aria-hidden="true">→</span></a>
       </article>
       <article class="member">
         <div class="avatar">CL</div>
         <div><h3>Caroline Larsen</h3><div class="role">CFO · Finance</div><a class="mail" href="mailto:caroline@tradeoapp.com">caroline@tradeoapp.com</a></div>
-        <details class="bio"><summary>More about Caroline</summary><dl>
-          <div><dt>Background</dt><dd>From Kristiansand. Has always had a strong interest in clothes, fashion and trends, and has been into fashion for as long as she can remember. Enjoys exploring different styles and forms of expression.</dd></div>
-          <div><dt>Experience</dt><dd>Has worked in the clothing industry since she was 15, with experience from both physical shops and online stores. This has given her solid insight into customer service, sales, e-commerce and how the clothing industry works. Still works with clothes and online retail alongside her current job in the jewellery trade.</dd></div>
-        </dl></details>
+        <a class="more" href="#caroline">More about Caroline <span aria-hidden="true">→</span></a>
       </article>
     </div>
   </div>
@@ -486,6 +497,102 @@ footer{padding-block:8px 40px;color:var(--muted);font-size:14px}
     <div><h2>Want to work with us?</h2><p>A swap market, a campaign, an interview or something else entirely. We would love to hear from you.</p></div>
     <a class="btn white" href="#samarbeid">Get in touch</a>
   </div>
+</section>
+
+<section data-page="sander" id="sander" class="profile">
+  <a class="back" href="#om">← Back to the team</a>
+  <div class="profile-head">
+    <!-- Bilde: legg filen i mappen bilder/ og bytt ut forbokstavene med <img src="bilder/sander.jpg" alt="Sander Kittelsen"> -->
+    <div class="photo" style="background:var(--blue)">SK</div>
+    <div class="stack">
+      <span class="label">Who we are</span>
+      <h1>Sander Kittelsen</h1>
+      <div class="role">CEO · Chief Executive</div>
+      <a class="mail" href="mailto:sander@tradeoapp.com">sander@tradeoapp.com</a>
+    </div>
+  </div>
+  <div class="profile-body">
+    <div><h2>Background</h2><p>From Kristiansand, where he went to Kristiansand Cathedral School. Studies entrepreneurship and business development. Deeply engaged in society, with a particular interest in leadership, business development and economics.</p></div>
+    <div><h2>Experience</h2><p>Elected to the board of Kristiansand Young Conservatives at 14 and later became second deputy chair. Has also served on the executive committee of Agder Young Conservatives, which gave solid organisational and political experience. Has worked at Playworld, in a warehouse and at Infografikk (Apple Premium Reseller).</p></div>
+  </div>
+  <!-- Flere bilder: legg inn <img src="bilder/sander-1.jpg" alt="..."> her, så dukker galleriet opp av seg selv -->
+  <div class="gallery" aria-label="Photos of Sander"></div>
+  <nav class="profile-nav">
+    <a href="#caroline"><small>← Previous</small>Caroline Larsen</a>
+    <a href="#aasne"><small>Next →</small>Åsne Figenschou</a>
+  </nav>
+</section>
+
+<section data-page="aasne" id="aasne" class="profile">
+  <a class="back" href="#om">← Back to the team</a>
+  <div class="profile-head">
+    <!-- Bilde: legg filen i mappen bilder/ og bytt ut forbokstavene med <img src="bilder/aasne.jpg" alt="Åsne Figenschou"> -->
+    <div class="photo" style="background:var(--green)">ÅF</div>
+    <div class="stack">
+      <span class="label">Who we are</span>
+      <h1>Åsne Figenschou</h1>
+      <div class="role">CTO · Technology</div>
+      <a class="mail" href="mailto:aasne@tradeoapp.com">aasne@tradeoapp.com</a>
+    </div>
+  </div>
+  <div class="profile-body">
+    <div><h2>Background</h2><p>From Bærum, where she took the sports programme at Nadderud upper secondary school. Studies entrepreneurship and business development. Creative, with a strong interest in fashion, reuse and redesign, and already had her own YouTube channel about redesigning old clothes in primary school. Very interested in artificial intelligence and uses AI actively in building Tradeo.</p></div>
+    <div><h2>Experience</h2><p>At 16, won an entrepreneurship competition run by DNB with the app idea “Ditt Neste Bytte” (Your Next Swap), the idea Tradeo builds on. Started a small business with a friend in lower secondary school, and was part of the costume team for the school revue, which got a top review in Aftenposten. Works in a café today and has previously worked at Build-A-Bear and Ringo in customer service and sales.</p></div>
+  </div>
+  <!-- Flere bilder: legg inn <img src="bilder/aasne-1.jpg" alt="..."> her, så dukker galleriet opp av seg selv -->
+  <div class="gallery" aria-label="Photos of Åsne"></div>
+  <nav class="profile-nav">
+    <a href="#sander"><small>← Previous</small>Sander Kittelsen</a>
+    <a href="#amie"><small>Next →</small>Amie Andersson</a>
+  </nav>
+</section>
+
+<section data-page="amie" id="amie" class="profile">
+  <a class="back" href="#om">← Back to the team</a>
+  <div class="profile-head">
+    <!-- Bilde: legg filen i mappen bilder/ og bytt ut forbokstavene med <img src="bilder/amie.jpg" alt="Amie Andersson"> -->
+    <div class="photo" style="background:var(--sand)">AA</div>
+    <div class="stack">
+      <span class="label">Who we are</span>
+      <h1>Amie Andersson</h1>
+      <div class="role">CCO · Commercial Lead</div>
+      <a class="mail" href="mailto:amie@tradeoapp.com">amie@tradeoapp.com</a>
+    </div>
+  </div>
+  <div class="profile-body">
+    <div><h2>Background</h2><p>Grew up in Sweden, with Swedish, Danish and Norwegian roots. Studies business development and entrepreneurship at BI in Oslo. Took economics and law in upper secondary school, has completed a college course in project management and studied for half a year in London. Social, positive and curious.</p></div>
+    <div><h2>Experience</h2><p>Received a diploma for her own student company in upper secondary school. Has worked in a kindergarten, a shop, customer service, a restaurant and a hotel, which gave her broad experience with teamwork, communication and meeting many different people.</p></div>
+  </div>
+  <!-- Flere bilder: legg inn <img src="bilder/amie-1.jpg" alt="..."> her, så dukker galleriet opp av seg selv -->
+  <div class="gallery" aria-label="Photos of Amie"></div>
+  <nav class="profile-nav">
+    <a href="#aasne"><small>← Previous</small>Åsne Figenschou</a>
+    <a href="#caroline"><small>Next →</small>Caroline Larsen</a>
+  </nav>
+</section>
+
+<section data-page="caroline" id="caroline" class="profile">
+  <a class="back" href="#om">← Back to the team</a>
+  <div class="profile-head">
+    <!-- Bilde: legg filen i mappen bilder/ og bytt ut forbokstavene med <img src="bilder/caroline.jpg" alt="Caroline Larsen"> -->
+    <div class="photo" style="background:var(--field)">CL</div>
+    <div class="stack">
+      <span class="label">Who we are</span>
+      <h1>Caroline Larsen</h1>
+      <div class="role">CFO · Finance</div>
+      <a class="mail" href="mailto:caroline@tradeoapp.com">caroline@tradeoapp.com</a>
+    </div>
+  </div>
+  <div class="profile-body">
+    <div><h2>Background</h2><p>From Kristiansand. Has always had a strong interest in clothes, fashion and trends, and has been into fashion for as long as she can remember. Enjoys exploring different styles and forms of expression.</p></div>
+    <div><h2>Experience</h2><p>Has worked in the clothing industry since she was 15, with experience from both physical shops and online stores. This has given her solid insight into customer service, sales, e-commerce and how the clothing industry works. Still works with clothes and online retail alongside her current job in the jewellery trade.</p></div>
+  </div>
+  <!-- Flere bilder: legg inn <img src="bilder/caroline-1.jpg" alt="..."> her, så dukker galleriet opp av seg selv -->
+  <div class="gallery" aria-label="Photos of Caroline"></div>
+  <nav class="profile-nav">
+    <a href="#amie"><small>← Previous</small>Amie Andersson</a>
+    <a href="#sander"><small>Next →</small>Sander Kittelsen</a>
+  </nav>
 </section>
 
 <section data-page="kundeservice" id="kundeservice">
@@ -674,6 +781,11 @@ function show(page){
   document.querySelectorAll(".bar a").forEach(a => { if (a.getAttribute("href") === "#"+page) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
   const titles = { om: "About us", kundeservice: "Support", samarbeid: "Partners", vilkar: "Terms of use", personvern: "Privacy" };
   document.title = titles[page] ? `${titles[page]} · ${BRAND}` : `${BRAND} · Swap clothes and things instead of buying new`;
+  const prof = document.querySelector(`.profile[data-page="${page}"] h1`);
+  if (prof) document.title = `${prof.textContent} · ${BRAND}`;
+  const fromProfile = document.querySelector(`.profile[data-page="${show.last}"]`);
+  show.last = page;
+  if (page === "om" && fromProfile) { requestAnimationFrame(() => document.getElementById("team").scrollIntoView()); return; }
   window.scrollTo(0,0);
   // Nettleseren hopper selv til #anker etter at siden er lastet; hent den tilbake til toppen
   requestAnimationFrame(() => window.scrollTo(0,0));
